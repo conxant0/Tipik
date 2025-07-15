@@ -9,6 +9,7 @@ import 'package:frontend/pages/profile_page.dart';
 import 'package:frontend/pages/projects_page.dart';
 import 'package:frontend/widgets/navbar/nav_controller.dart';
 import 'pages/ide_page.dart';
+import 'dart:io';
 
 void main() async {
   await dotenv.load(fileName: ".env");
@@ -36,7 +37,10 @@ class MyApp extends StatelessWidget {
         '/notif': (context) => const NotifPage(),
         '/projects': (context) => const ProjectsPage(),
         '/profile': (context) => const ProfilePage(),
-        '/explanation-compiler': (context) => const ExplanationCompilerPage(),
+        '/explanation-compiler': (context) {
+          final image = ModalRoute.of(context)!.settings.arguments as File;
+          return ExplanationCompilerPage(image: image);
+        },
       },
     );
   }

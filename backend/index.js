@@ -7,6 +7,7 @@ require('dotenv').config();
 
 const app = express();
 app.use(cors());
+app.use(express.json()); 
 
 const upload = multer({ dest: 'uploads/' });
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
@@ -108,6 +109,45 @@ app.post('/extract-code', upload.single('image'), async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Failed to extract code' });
+  }
+});
+
+app.post('/follow-up', async (req, res) => {
+  const { code, history, question } = req.body;
+
+  if (!code || !question) {
+    return res.status(400).json({ error: 'Code and question are required.' });
+  }
+
+  try {
+    const messages = [
+      {
+        role: 'system',
+        content: `You're a helpful assistant that explains code to students. Use simple, clear language.`,
+      },
+      {
+        role: 'user',
+        content: `Here is some code:\n\n${code}\n\nPlease explain it.`,
+      },
+      ...history, // prior follow-up messages
+      {
+        role: 'user',
+        content: question,
+      },
+    ];
+
+    const result = await openai.chat.completions.create({
+      model: 'gpt-4o',
+      messages,
+    });
+
+    res.json({
+      reply: result.choices[0].message.content,
+    });
+
+  } catch (error) {
+    console.error('Follow-up error:', error.message);
+    res.status(500).json({ error: 'Failed to process follow-up question.' });
   }
 });
 

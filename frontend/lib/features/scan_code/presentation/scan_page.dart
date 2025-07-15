@@ -65,21 +65,21 @@ class _ScanPageState extends State<ScanPage> {
     }
   }
 
-  void _handleExplain() async {
-    if (_image == null) return;
+  // void _handleExplain() async {
+  //   if (_image == null) return;
 
-    setState(() {
-      _isLoading = true;
-      _explanation = null;
-    });
+  //   setState(() {
+  //     _isLoading = true;
+  //     _explanation = null;
+  //   });
 
-    final explanation = await sendImageToBackend(_image!);
+  //   final explanation = await sendImageToBackend(_image!);
 
-    setState(() {
-      _explanation = explanation;
-      _isLoading = false;
-    });
-  }
+  //   setState(() {
+  //     _explanation = explanation;
+  //     _isLoading = false;
+  //   });
+  // }
 
   void _handleRun() async {
     if (_image == null) return;

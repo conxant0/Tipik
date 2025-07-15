@@ -5,8 +5,9 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 Future<String?> sendImageToBackend(File imageFile) async {
   try {
-    final baseUrl = dotenv.env['API_BASE_URL'];
-    final uri = Uri.parse('$baseUrl/explain-image');
+    final host = dotenv.env['API_BASE_URL'] ?? 'http://localhost';
+    final port = dotenv.env['CAMERA_PORT'] ?? '3000';
+    final uri = Uri.parse('$host:$port/explain-image');
 
     var request = http.MultipartRequest('POST', uri)
       ..files.add(await http.MultipartFile.fromPath('image', imageFile.path));
@@ -28,8 +29,10 @@ Future<String?> sendImageToBackend(File imageFile) async {
 }
 
 Future<String> extractCodeOnly(File imageFile) async {
-  final baseUrl = dotenv.env['API_BASE_URL'];
-  final uri = Uri.parse('$baseUrl/extract-code');
+  final host = dotenv.env['API_BASE_URL'] ?? 'http://localhost';
+  final port = dotenv.env['CAMERA_PORT'] ?? '3000';
+  final uri = Uri.parse('$host:$port/extract-code');
+
   final request = http.MultipartRequest('POST', uri)
     ..files.add(await http.MultipartFile.fromPath('image', imageFile.path));
 

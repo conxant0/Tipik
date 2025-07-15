@@ -12,10 +12,12 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 
 class ExplanationCompilerPage extends StatefulWidget {
   final File image;
-  const ExplanationCompilerPage({Key? key, required this.image}) : super(key: key);
+  const ExplanationCompilerPage({Key? key, required this.image})
+    : super(key: key);
 
   @override
-  State<ExplanationCompilerPage> createState() => _ExplanationCompilerPageState();
+  State<ExplanationCompilerPage> createState() =>
+      _ExplanationCompilerPageState();
 }
 
 class _ExplanationCompilerPageState extends State<ExplanationCompilerPage> {
@@ -39,6 +41,17 @@ class _ExplanationCompilerPageState extends State<ExplanationCompilerPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppColors.white,
+        title: Text(
+          'Code Explanation',
+          style: AppTextStyles.label1.copyWith(
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
+            color: AppColors.ocean,
+          ),
+        ),
+      ),
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -57,9 +70,14 @@ class _ExplanationCompilerPageState extends State<ExplanationCompilerPage> {
                           padding: const EdgeInsets.all(16.0),
                           child: MarkdownBody(
                             data: _explanation ?? 'No explanation found.',
-                            styleSheet: MarkdownStyleSheet.fromTheme(Theme.of(context)).copyWith(
-                              p: AppTextStyles.buttonText.copyWith(color: AppColors.ocean),
-                            ),
+                            styleSheet:
+                                MarkdownStyleSheet.fromTheme(
+                                  Theme.of(context),
+                                ).copyWith(
+                                  p: AppTextStyles.buttonText.copyWith(
+                                    color: AppColors.ocean,
+                                  ),
+                                ),
                           ),
                         ),
                 ),
@@ -67,7 +85,10 @@ class _ExplanationCompilerPageState extends State<ExplanationCompilerPage> {
               if (!_isLoading && _explanation != null) ...[
                 const SizedBox(height: 8),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16.0,
+                    vertical: 8.0,
+                  ),
                   child: ElevatedButton(
                     onPressed: () {
                       openFollowUpChat(context, _explanation!);

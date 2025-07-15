@@ -3,7 +3,7 @@ import 'package:frontend/features/scan_code/presentation/scan_page.dart';
 import 'package:frontend/pages/home_page.dart';
 import 'package:frontend/pages/notif_page.dart';
 import 'package:frontend/pages/profile_page.dart';
-import 'package:frontend/pages/projects_page.dart';
+import 'package:frontend/pages/projects/projects_page.dart';
 import 'package:frontend/widgets/navbar/navbar.dart';
 
 class NavController extends StatefulWidget {

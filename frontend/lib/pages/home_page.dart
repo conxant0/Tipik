@@ -29,11 +29,11 @@ class _MainPageState extends State<MainPage> {
             ),
           ),
           Center(
-          child: Text(
-            'Welcome to CodeSnap!',
-            style: AppTextStyles.heading.copyWith(color: Colors.white),
+            child: Text(
+              'Welcome to CodeSnap!',
+              style: AppTextStyles.heading.copyWith(color: Colors.white),
+            ),
           ),
-        ),
         ],
       ),
     );

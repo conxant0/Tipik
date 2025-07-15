@@ -1,0 +1,8 @@
+# Dependencies
+node_modules/
+backend/uploads/
+
+# Global ignores
+.env
+backend/.env
+frontend/.env

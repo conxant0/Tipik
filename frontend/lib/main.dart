@@ -6,7 +6,8 @@ import 'package:frontend/pages/home_page.dart';
 import 'package:frontend/pages/notif_page.dart';
 import 'package:frontend/pages/onboarding/onboarding-screen.dart';
 import 'package:frontend/pages/profile_page.dart';
-import 'package:frontend/pages/projects_page.dart';
+import 'package:frontend/pages/projects/project_details_page.dart';
+import 'package:frontend/pages/projects/projects_page.dart';
 import 'package:frontend/widgets/navbar/nav_controller.dart';
 import 'pages/ide_page.dart';
 import 'dart:io';
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
           return ExplanationCompilerPage(image: image);
         },
       },
+      
     );
   }
 }

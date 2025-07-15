@@ -22,18 +22,18 @@ class _MainPageState extends State<MainPage> {
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(
-                  'assets/backgrounds/home-bg.png',
+                  'assets/images/homepage.png',
                 ), // 🔁 Update with your actual image path
                 fit: BoxFit.cover,
               ),
             ),
           ),
-          Center(
-          child: Text(
-            'Welcome to CodeSnap!',
-            style: AppTextStyles.heading.copyWith(color: Colors.white),
-          ),
-        ),
+          // Center(
+          //   child: Text(
+          //     'Welcome to CodeSnap!',
+          //     style: AppTextStyles.heading.copyWith(color: Colors.white),
+          //   ),
+          // ),
         ],
       ),
     );

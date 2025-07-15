@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class IDEPage extends StatefulWidget {
   const IDEPage({super.key});
@@ -214,9 +215,13 @@ class Program {
     });
 
     try {
+      final apiHost = dotenv.env['API_BASE_URL'] ?? 'http://localhost';
+      final apiPort = dotenv.env['IDE_PORT'] ?? '3000';
+
+      final fullUrl = '$apiHost:$apiPort/execute';
+
       final response = await http.post(
-        //Uri.parse('http://10.0.2.2:3000/execute'),
-        Uri.parse('http://192.168.1.2:4000/execute'),
+        Uri.parse(fullUrl),
         headers: {'Content-Type': 'application/json'},
         body: json.encode({
           'code': _codeController.text,

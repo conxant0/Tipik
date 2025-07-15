@@ -6,9 +6,6 @@ import '../../features/scan_code/application/follow_up.dart';
 // theme
 import 'package:frontend/theme/colors.dart';
 import 'package:frontend/theme/text_styles.dart';
-import 'package:frontend/widgets/compiler/compiler_tab_content.dart';
-
-import 'package:frontend/widgets/compiler/tab_bar.dart';
 import 'package:frontend/widgets/generic/custom_container.dart';
 
 import 'package:flutter_markdown/flutter_markdown.dart';
@@ -42,37 +39,46 @@ class _ExplanationCompilerPageState extends State<ExplanationCompilerPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomTabBar(
-        tabs: ['Explanation', 'Compiler'],
-        tabContents: [
-          Column(
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/backgrounds/result-bg.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: SafeArea(
+          child: Column(
             children: [
               Expanded(
                 child: CustomContainer(
                   child: _isLoading
                       ? const Center(child: CircularProgressIndicator())
-                      : MarkdownBody(
-                          data: _explanation ?? 'No explanation found.',
-                          styleSheet: MarkdownStyleSheet.fromTheme(Theme.of(context)).copyWith(
-                            p: AppTextStyles.buttonText.copyWith(color: AppColors.ocean),
+                      : SingleChildScrollView(
+                          padding: const EdgeInsets.all(16.0),
+                          child: MarkdownBody(
+                            data: _explanation ?? 'No explanation found.',
+                            styleSheet: MarkdownStyleSheet.fromTheme(Theme.of(context)).copyWith(
+                              p: AppTextStyles.buttonText.copyWith(color: AppColors.ocean),
+                            ),
                           ),
                         ),
                 ),
               ),
               if (!_isLoading && _explanation != null) ...[
                 const SizedBox(height: 8),
-                ElevatedButton(
-                  onPressed: () {
-                    openFollowUpChat(context, _explanation!);
-                  },
-                  child: const Text('Ask a follow-up question'),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      openFollowUpChat(context, _explanation!);
+                    },
+                    child: const Text('Ask a follow-up question'),
+                  ),
                 ),
               ],
             ],
           ),
-          Center(child: CompilerTabContent()),
-        ],
-        backgroundImage: 'assets/backgrounds/result-bg.png',
+        ),
       ),
     );
   }

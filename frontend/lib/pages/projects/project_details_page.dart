@@ -31,28 +31,7 @@ class ProjectDetailPage extends StatelessWidget {
       body: CustomTabBar(
         tabs: ['Index', 'Compiler'],
         tabContents: [
-          Column(
-            children: [
-              Expanded(
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: CustomContainer(
-                        child: Center(
-                          child: Text(
-                            'Explanation Content',
-                            style: AppTextStyles.buttonText.copyWith(
-                              color: AppColors.ocean,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
+          Image.asset('assets/backgrounds/project-details-1.png'),
 
           Center(child: CompilerTabContent()),
         ],

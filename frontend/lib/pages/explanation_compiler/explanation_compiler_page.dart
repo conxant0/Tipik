@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
 import '../../features/scan_code/application/image_sender.dart';
+import '../../features/scan_code/application/follow_up.dart';
 
 // theme
 import 'package:frontend/theme/colors.dart';
@@ -58,6 +59,15 @@ class _ExplanationCompilerPageState extends State<ExplanationCompilerPage> {
                         ),
                 ),
               ),
+              if (!_isLoading && _explanation != null) ...[
+                const SizedBox(height: 8),
+                ElevatedButton(
+                  onPressed: () {
+                    openFollowUpChat(context, _explanation!);
+                  },
+                  child: const Text('Ask a follow-up question'),
+                ),
+              ],
             ],
           ),
           Center(child: CompilerTabContent()),

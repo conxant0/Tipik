@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const OnboardingPage(),
-      // debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false,
       routes: {
         '/home': (context) => const MainPage(),
         '/nav': (context) => const NavController(),
@@ -43,7 +43,6 @@ class MyApp extends StatelessWidget {
           return ExplanationCompilerPage(image: image);
         },
       },
-      
     );
   }
 }
